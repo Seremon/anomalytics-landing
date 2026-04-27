@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" data-current-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Обработка данных в AI — AI Automation for Data Workflows</title>
+  <meta name="description" content="Automate reporting, data cleanup, anomaly detection, and business workflows with practical AI systems built for operations, finance, and analytics teams." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: #fcfcfb;
+      color: #152423;
+    }
+    h1, h2, h3, .font-display { font-family: 'Fraunces', serif; }
+    .glass {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .section-reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+    .section-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(13,79,79,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(13,79,79,0.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .card-hover {
+      transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 60px rgba(16, 44, 44, 0.10);
+      border-color: rgba(13,79,79,0.18);
+    }
+    .btn-primary, .btn-secondary, .lang-btn {
+      transition: transform 180ms ease, box-shadow 220ms ease, background-color 220ms ease, color 220ms ease, border-color 220ms ease, opacity 220ms ease;
+    }
+    .btn-primary:hover, .btn-secondary:hover, .lang-btn:hover { transform: translateY(-1px); }
+    .metric-pop { animation: floatUp 5s ease-in-out infinite; }
+    @keyframes floatUp {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+    .animated-number { font-variant-numeric: tabular-nums; }
+    .lang-btn.active {
+      background: #0D4F4F;
+      color: white;
+      box-shadow: 0 10px 24px rgba(13,79,79,0.16);
+    }
+    [data-lang] { display: none; }
+    html[data-current-lang="en"] [data-lang="en"] { display: initial; }
+    html[data-current-lang="ru"] [data-lang="ru"] { display: initial; }
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 280ms ease;
+    }
+    .faq-item.open .faq-content { max-height: 220px; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-icon { transition: transform 240ms ease; }
+  </style>
+</head>
+<body class="antialiased selection:bg-[#FF6B4A]/20">
+  <header id="site-header" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div id="header-shell" class="mt-4 flex items-center justify-between gap-4 rounded-2xl border border-transparent px-5 py-4 transition-all duration-300">
+        <a href="#top" class="text-lg font-extrabold tracking-tight text-[#0D4F4F]">Обработка данных в AI</a>
+        <nav class="hidden items-center gap-8 text-sm font-medium text-slate-700 md:flex">
+          <a class="transition hover:text-[#0D4F4F]" href="#solution"><span data-lang="en">How it works</span><span data-lang="ru">Как это работает</span></a>
+          <a class="transition hover:text-[#0D4F4F]" href="#services"><span data-lang="en">Services</span><span data-lang="ru">Услуги</span></a>
+          <a class="transition hover:text-[#0D4F4F]" href="#cases"><span data-lang="en">Кейс</span><span data-lang="ru">Кейсы</span></a>
+          <a class="transition hover:text-[#0D4F4F]" href="#faq">FAQ</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <div class="glass hidden rounded-full border border-slate-200 bg-white/80 p-1 shadow-sm sm:flex">
+            <button class="lang-btn active rounded-full px-3 py-2 text-xs font-bold text-slate-700" data-set-lang="en">EN</button>
+            <button class="lang-btn rounded-full px-3 py-2 text-xs font-bold text-slate-700" data-set-lang="ru">RU</button>
+          </div>
+          <a href="#contact" class="btn-primary rounded-full bg-[#0D4F4F] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_32px_rgba(13,79,79,0.18)] hover:bg-[#0b4343]"><span data-lang="en">Book a strategy call</span><span data-lang="ru">Записаться на стратегический звонок</span></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero-grid overflow-hidden px-6 pb-20 pt-36 lg:px-8 lg:pb-28 lg:pt-40">
+      <div class="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
+        <div class="section-reveal">
+          <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#0D4F4F]/10 bg-white/90 px-4 py-2 text-sm text-slate-700 shadow-sm">
+            <span class="h-2 w-2 rounded-full bg-[#FF6B4A]"></span>
+            <span data-lang="en">AI automation for operations, finance, and analytics teams</span>
+            <span data-lang="ru">Автоматизация на основе искусственного интеллекта для операционных, финансовых и аналитических команд</span>
+          </div>
+          <h1 class="max-w-3xl text-5xl font-semibold leading-[1.02] tracking-tight text-slate-900 sm:text-6xl lg:text-7xl">
+            <span data-lang="en"><span data-lang="en">Turn messy, manual data work into <span class="text-[#0D4F4F]">automated</span>, reliable workflows.</span>
+            <span data-lang="ru">Автоматизация аналитической отчетности в логистике без ручного труда и задержек</span></span>
+            <span data-lang="ru">Превратите хаотичную ручную работу с данными в <span class="text-[#0D4F4F]">автоматизированные</span> и надёжные процессы.</span>
+          </h1>
+          <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl">
+            <span data-lang="en"><span data-lang="en">We design AI systems that collect, clean, analyze, and deliver business data automatically — so your team spends less time in spreadsheets and more time making decisions.</span>
+            <span data-lang="ru">Внедряем системы, которые автоматически формируют аналитическую отчетность, помогают управлять перевозочным процессом и устраняют ручной труд специалистов.</span>
+          </p>
+          <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+            <a href="#contact" class="btn-primary inline-flex items-center justify-center rounded-full bg-[#0D4F4F] px-6 py-4 text-base font-semibold text-white shadow-[0_16px_40px_rgba(13,79,79,0.16)] hover:bg-[#0b4343]"><span data-lang="en">Book a strategy call</span><span data-lang="ru">Записаться на стратегический звонок</span></a>
+            <a href="#solution" class="btn-secondary inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-4 text-base font-semibold text-slate-800 shadow-sm hover:border-[#0D4F4F]/30 hover:text-[#0D4F4F]"><span data-lang="en">See how it works</span><span data-lang="ru">Посмотреть, как это работает</span></a>
+          </div>
+          <p class="mt-5 text-sm text-slate-500"><span data-lang="en">Built for teams drowning in exports, repetitive reporting, and inconsistent data across multiple tools.</span><span data-lang="ru">Создано для команд, которые тонут в выгрузках, повторяющейся отчётности и несогласованных данных из разных систем.</span></p>
+          <div class="mt-10 grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-4">
+            <div class="metric-pop rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm"><div class="animated-number text-2xl font-extrabold text-[#0D4F4F]">4.5ч → 15мин</div><div class="mt-1 text-sm text-slate-600"><span data-lang="en">сокращение времени подготовки отчета</span><span data-lang="ru">меньше ручной отчётности</span></div></div>
+            <div class="metric-pop rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm" style="animation-delay: 0.6s;"><div class="animated-number text-2xl font-extrabold text-[#0D4F4F]">до секунд</div><div class="mt-1 text-sm text-slate-600"><span data-lang="en">полная автоматизация</span><span data-lang="ru">быстрее выполнение процессов</span></div></div>
+            <div class="metric-pop rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm" style="animation-delay: 1.2s;"><div class="animated-number text-2xl font-extrabold text-[#0D4F4F]">65%</div><div class="mt-1 text-sm text-slate-600"><span data-lang="en">fewer data errors</span><span data-lang="ru">меньше ошибок в данных</span></div></div>
+            <div class="metric-pop rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm" style="animation-delay: 1.8s;"><div class="animated-number text-2xl font-extrabold text-[#0D4F4F]">24/7</div><div class="mt-1 text-sm text-slate-600"><span data-lang="en">monitoring & alerts</span><span data-lang="ru">мониторинг и уведомления</span></div></div>
+          </div>
+        </div>
+
+        <div class="section-reveal relative">
+          <div class="absolute -left-8 top-8 h-32 w-32 rounded-full bg-[#FF6B4A]/10 blur-3xl"></div>
+          <div class="absolute -right-10 bottom-0 h-36 w-36 rounded-full bg-[#0D4F4F]/10 blur-3xl"></div>
+          <div class="relative rounded-[2rem] border border-slate-200 bg-white p-5 shadow-[0_30px_80px_rgba(16,44,44,0.10)]">
+            <div class="mb-4 flex items-center justify-between border-b border-slate-100 pb-4">
+              <div>
+                <p class="text-sm font-semibold text-slate-900"><span data-lang="en">Automation pipeline</span><span data-lang="ru">Контур автоматизации</span></p>
+                <p class="text-sm text-slate-500"><span data-lang="en">From scattered source data to decision-ready output</span><span data-lang="ru">От разрозненных источников данных к готовому результату для бизнеса</span></p>
+              </div>
+              <div class="rounded-full bg-[#0D4F4F]/8 px-3 py-1 text-xs font-semibold text-[#0D4F4F]"><span data-lang="en">Live workflow</span><span data-lang="ru">Рабочий процесс</span></div>
+            </div>
+            <div class="space-y-4">
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="text-sm font-semibold text-slate-900"><span data-lang="en">1. Ingest</span><span data-lang="ru">1. Сбор данных</span></div>
+                    <div class="mt-1 text-sm text-slate-600"><span data-lang="en">CRM, spreadsheets, exports, forms, BI tools, ERP systems</span><span data-lang="ru">CRM, таблицы, выгрузки, формы, BI-инструменты, ERP-системы</span></div>
+                  </div>
+                  <span class="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-500 shadow-sm"><span data-lang="en">5 sources</span><span data-lang="ru">5 источников</span></span>
+                </div>
+                <div class="mt-3 flex flex-wrap gap-2 text-xs"><span class="rounded-full bg-white px-3 py-1 text-slate-600 shadow-sm">HubSpot</span><span class="rounded-full bg-white px-3 py-1 text-slate-600 shadow-sm">Google Sheets</span><span class="rounded-full bg-white px-3 py-1 text-slate-600 shadow-sm">Stripe</span><span class="rounded-full bg-white px-3 py-1 text-slate-600 shadow-sm">CSV</span></div>
+              </div>
+              <div class="flex justify-center"><div class="h-10 w-px bg-gradient-to-b from-[#0D4F4F]/30 to-[#FF6B4A]/30"></div></div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="text-sm font-semibold text-slate-900"><span data-lang="en">2. Clean & structure</span><span data-lang="ru">2. Очистка и структура</span></div>
+                    <div class="mt-1 text-sm text-slate-600"><span data-lang="en">Deduplicate records, standardize fields, resolve inconsistencies, validate schema</span><span data-lang="ru">Удаление дублей, стандартизация полей, устранение расхождений, проверка схемы</span></div>
+                  </div>
+                  <span class="rounded-full bg-[#FF6B4A]/10 px-3 py-1 text-xs font-semibold text-[#c2563e]"><span data-lang="en">AI rules</span><span data-lang="ru">Правила ИИ</span></span>
+                </div>
+              </div>
+              <div class="flex justify-center"><div class="h-10 w-px bg-gradient-to-b from-[#0D4F4F]/30 to-[#FF6B4A]/30"></div></div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="text-sm font-semibold text-slate-900"><span data-lang="en">3. Analyze & monitor</span><span data-lang="ru">3. Анализ и мониторинг</span></div>
+                    <div class="mt-1 text-sm text-slate-600"><span data-lang="en">Generate insights, detect anomalies, flag risks, enrich data automatically</span><span data-lang="ru">Формирование выводов, поиск аномалий, выявление рисков, автоматическое обогащение данных</span></div>
+                  </div>
+                  <span class="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-500 shadow-sm">24/7</span>
+                </div>
+              </div>
+              <div class="flex justify-center"><div class="h-10 w-px bg-gradient-to-b from-[#0D4F4F]/30 to-[#FF6B4A]/30"></div></div>
+              <div class="rounded-2xl border border-slate-200 bg-[#0D4F4F] p-4 text-white">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="text-sm font-semibold"><span data-lang="en">4. Deliver</span><span data-lang="ru">4. Доставка результата</span></div>
+                    <div class="mt-1 text-sm text-white/80"><span data-lang="en">Dashboards, alerts, reports, structured exports, executive summaries</span><span data-lang="ru">Панели показателей, уведомления, отчёты, структурированные выгрузки, краткие управленческие сводки</span></div>
+                  </div>
+                  <span class="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold"><span data-lang="en">Action-ready</span><span data-lang="ru">Готово к действию</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero-grid px-6 py-8 lg:px-8">
+      <div class="mx-auto max-w-7xl rounded-[2rem] border border-slate-200 bg-white px-6 py-6 shadow-sm section-reveal">
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <p class="text-sm font-medium uppercase tracking-[0.22em] text-slate-400"><span data-lang="en">Trusted workflows across</span><span data-lang="ru">Рабочие сценарии для</span></p>
+          <div class="grid grid-cols-2 gap-4 text-sm font-semibold text-slate-600 sm:grid-cols-4 lg:flex lg:gap-10">
+            <span>SaaS</span><span><span data-lang="en">Retail Ops</span><span data-lang="ru">Ритейл-операции</span></span><span><span data-lang="en">Logistics</span><span data-lang="ru">Логистика</span></span><span><span data-lang="en">Finance Ops</span><span data-lang="ru">Финансовые операции</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero-grid px-6 py-20 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <div class="max-w-3xl section-reveal">
+          <p class="text-sm font-bold uppercase tracking-[0.22em] text-[#FF6B4A]"><span data-lang="en">The problem</span><span data-lang="ru">Проблема</span></p>
+          <h2 class="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl"><span data-lang="en">Manual data work is quietly slowing down your entire business.</span><span data-lang="ru">Ручная работа с данными незаметно замедляет весь бизнес.</span></h2>
+          <p class="mt-5 text-lg leading-8 text-slate-600"><span data-lang="en">Teams lose hours every week reconciling exports, cleaning spreadsheets, and patching inconsistent reports. The cost is not only time — it is slower decisions, missed signals, and avoidable errors.</span><span data-lang="ru">Команды теряют часы каждую неделю на сверку выгрузок, очистку таблиц и исправление несогласованных отчётов. Цена проблемы — не только время, но и более медленные решения, упущенные сигналы и лишние ошибки.</span></p>
+        </div>
+        <div class="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <article class="section-reveal card-hover rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm"><div class="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-[#FF6B4A]">01</div><h3 class="text-xl font-semibold text-slate-900"><span data-lang="en">Repetitive cleanup</span><span data-lang="ru">Повторяющаяся очистка</span></h3><p class="mt-3 leading-7 text-slate-600"><span data-lang="en">Analysts and ops teams spend valuable time fixing column names, formats, duplicates, and broken exports instead of producing insight.</span><span data-lang="ru">Аналитики и операционные команды тратят ценное время на исправление названий колонок, форматов, дублей и сломанных выгрузок вместо создания инсайтов.</span></p></article>
+          <article class="section-reveal card-hover rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm"><div class="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-[#FF6B4A]">02</div><h3 class="text-xl font-semibold text-slate-900"><span data-lang="en">Delayed reporting</span><span data-lang="ru">Задержки в отчётности</span></h3><p class="mt-3 leading-7 text-slate-600"><span data-lang="en">Critical reports depend on too many systems and too much manual work, so the business sees yesterday’s reality instead of today’s signals.</span><span data-lang="ru">Критическая отчётность зависит от слишком большого числа систем и ручных действий, поэтому бизнес видит вчерашнюю картину вместо сигналов сегодняшнего дня.</span></p></article>
+          <article class="section-reveal card-hover rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm"><div class="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-[#FF6B4A]">03</div><h3 class="text-xl font-semibold text-slate-900"><span data-lang="en">Inconsistent decisions</span><span data-lang="ru">Несогласованные решения</span></h3><p class="mt-3 leading-7 text-slate-600"><span data-lang="en">Different teams work from different numbers, definitions, and logic — which makes alignment harder and trust in reporting weaker.</span><span data-lang="ru">Разные команды работают с разными цифрами, определениями и логикой — из-за этого сложнее синхронизироваться и падает доверие к отчётности.</span></p></article>
+          <article class="section-reveal card-hover rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm"><div class="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-[#FF6B4A]">04</div><h3 class="text-xl font-semibold text-slate-900"><span data-lang="en">Missed anomalies</span><span data-lang="ru">Пропущенные аномалии</span></h3><p class="mt-3 leading-7 text-slate-600"><span data-lang="en">When data checking is manual, emerging issues hide in the noise until they become expensive problems.</span><span data-lang="ru">Когда проверка данных выполняется вручную, зарождающиеся проблемы теряются в шуме и обнаруживаются слишком поздно.</span></p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="solution" class="hero-grid bg-white px-6 py-20 lg:px-8">
+      <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+        <div class="section-reveal">
+          <p class="text-sm font-bold uppercase tracking-[0.22em] text-[#FF6B4A]"><span data-lang="en">The solution</span><span data-lang="ru">Решение</span></p>
+          <h2 class="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl"><span data-lang="en">A practical AI layer for your entire data workflow.</span><span data-lang="ru">Практический слой автоматизации для всех процессов работы с данными.</span></h2>
+          <p class="mt-5 text-lg leading-8 text-slate-600"><span data-lang="en">We build automation systems that connect to your current tools, normalize messy inputs, detect issues automatically, and send structured outputs where your team already works.</span><span data-lang="ru">Мы создаём системы автоматизации, которые подключаются к вашим текущим инструментам, нормализуют хаотичные входные данные, автоматически находят проблемы и отправляют структурированный результат туда, где ваша команда уже работает.</span></p>
+        </div>
+        <div class="grid gap-5">
+          <div class="section-reveal card-hover rounded-[2rem] border border-slate-200 bg-slate-50 p-7 shadow-sm"><div class="flex items-start gap-5"><div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#0D4F4F] text-lg font-bold text-white">1</div><div><h3 class="text-xl font-semibold text-slate-900"><span data-lang="en">Connect sources</span><span data-lang="ru">Подключаем источники</span></h3><p class="mt-2 leading-7 text-slate-600"><span data-lang="en">Bring together CRM data, forms, spreadsheets, payment systems, support tools, and internal exports into one reliable pipeline.</span><span data-lang="ru">Собираем данные из CRM, форм, таблиц, платёжных систем, служб поддержки и внутренних выгрузок в единый надёжный контур обработки.</span></p></div></div></div>
+          <div class="section-reveal card-hover rounded-[2rem] border border-slate-200 bg-slate-50 p-7 shadow-sm"><div class="flex items-start gap-5"><div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#0D4F4F] text-lg font-bold text-white">2</div><div><h3 class="text-xl font-semibold text-slate-900"><span data-lang="en">Clean and structure automatically</span><span data-lang="ru">Автоматически очищаем и структурируем</span></h3><p class="mt-2 leading-7 text-slate-600"><span data-lang="en">Use AI and workflow logic to standardize fields, fix formatting, remove duplicates, and transform messy data into consistent business-ready datasets.</span><span data-lang="ru">Используем искусственный интеллект и правила обработки для стандартизации полей, исправления форматов, удаления дублей и преобразования неструктурированных данных в единые наборы, готовые для бизнеса.</span></p></div></div></div>
+          <div class="section-reveal card-hover rounded-[2rem] border border-slate-200 bg-slate-50 p-7 shadow-sm"><div class="flex items-start gap-5"><div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#0D4F4F] text-lg font-bold text-white">3</div><div><h3 class="text-xl font-semibold text-slate-900"><span data-lang="en">Analyze and detect signals</span><span data-lang="ru">Анализируем и ловим сигналы</span></h3><p class="mt-2 leading-7 text-slate-600"><span data-lang="en">Spot anomalies, generate summaries, monitor trends, and highlight what needs attention before a human has to look for it manually.</span><span data-lang="ru">Выявляем аномалии, создаём краткие сводки, отслеживаем тенденции и подсвечиваем то, что требует внимания, ещё до того, как человек начнёт искать это вручную.</span></p></div></div></div>
+          <div class="section-reveal card-hover rounded-[2rem] border border-slate-200 bg-slate-50 p-7 shadow-sm"><div class="flex items-start gap-5"><div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#0D4F4F] text-lg font-bold text-white">4</div><div><h3 class="text-xl font-semibold text-slate-900"><span data-lang="en">Deliver action-ready outputs</span><span data-lang="ru">Отдаём результат, готовый к действию</span></h3><p class="mt-2 leading-7 text-slate-600"><span data-lang="en">Push reports, dashboards, alerts, and structured exports directly into the places your team already uses to decide and operate.</span><span data-lang="ru">Передаём отчёты, панели показателей, уведомления и структурированные выгрузки прямо в те инструменты, где команда уже принимает решения и работает.</span></p></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="hero-grid px-6 py-20 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <div class="max-w-3xl section-reveal">
+          <p class="text-sm font-bold uppercase tracking-[0.22em] text-[#FF6B4A]"><span data-lang="en">Services</span><span data-lang="ru">Услуги</span></p>
+          <h2 class="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl"><span data-lang="en">Designed for teams that need outcomes, not AI theatre.</span><span data-lang="ru">Создано для команд, которым нужен измеримый результат, а не видимость внедрения искусственного интеллекта.</span></h2>
+        </div>
+        <div class="mt-12 grid gap-6 lg:grid-cols-3">
+          <article class="section-reveal card-hover rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm"><p class="text-sm font-bold uppercase tracking-[0.18em] text-[#FF6B4A]">01</p><h3 class="mt-4 text-2xl font-semibold text-slate-900"><span data-lang="en">AI Data Workflow Automation</span><span data-lang="ru">Автоматизация процессов работы с данными</span></h3><p class="mt-4 leading-7 text-slate-600"><span data-lang="en">Automate collection, cleanup, structuring, and movement of data across operational workflows.</span><span data-lang="ru">Автоматизируйте сбор, очистку, структурирование и перемещение данных внутри операционных процессов.</span></p><ul class="mt-6 space-y-3 text-sm text-slate-600"><li>• <span data-lang="en">Best for ops-heavy teams</span><span data-lang="ru">Для команд с высокой операционной нагрузкой</span></li><li>• <span data-lang="en">Reduces repetitive spreadsheet work</span><span data-lang="ru">Сокращает рутину в таблицах</span></li><li>• <span data-lang="en">Improves reliability of source data</span><span data-lang="ru">Повышает надёжность исходных данных</span></li></ul></article>
+          <article class="section-reveal card-hover rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm"><p class="text-sm font-bold uppercase tracking-[0.18em] text-[#FF6B4A]">02</p><h3 class="mt-4 text-2xl font-semibold text-slate-900"><span data-lang="en">AI Reporting & Monitoring</span><span data-lang="ru">Автоматическая отчётность и мониторинг</span></h3><p class="mt-4 leading-7 text-slate-600"><span data-lang="en">Build automated reporting layers with anomaly detection, summaries, and proactive alerts.</span><span data-lang="ru">Создайте автоматизированный слой отчётности с поиском аномалий, summary и проактивными алертами.</span></p><ul class="mt-6 space-y-3 text-sm text-slate-600"><li>• <span data-lang="en">Best for analytics and finance teams</span><span data-lang="ru">Для аналитических и финансовых команд</span></li><li>• <span data-lang="en">Cuts reporting cycles dramatically</span><span data-lang="ru">Сильно сокращает циклы подготовки отчётов</span></li><li>• <span data-lang="en">Surfaces issues before they escalate</span><span data-lang="ru">Находит проблемы до их эскалации</span></li></ul></article>
+          <article class="section-reveal card-hover rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm"><p class="text-sm font-bold uppercase tracking-[0.18em] text-[#FF6B4A]">03</p><h3 class="mt-4 text-2xl font-semibold text-slate-900"><span data-lang="en">Custom AI Data Agents</span><span data-lang="ru">Настраиваемые агенты обработки данных</span></h3><p class="mt-4 leading-7 text-slate-600"><span data-lang="en">Deploy tailored agents that execute repetitive data tasks, assist teams, and route insights automatically.</span><span data-lang="ru">Внедряйте кастомных агентов, которые выполняют повторяющиеся data-задачи, помогают командам и автоматически маршрутизируют инсайты.</span></p><ul class="mt-6 space-y-3 text-sm text-slate-600"><li>• <span data-lang="en">Best for custom workflows</span><span data-lang="ru">Для нестандартных процессов</span></li><li>• <span data-lang="en">Fits existing tools and processes</span><span data-lang="ru">Встраивается в существующие инструменты и процессы</span></li><li>• <span data-lang="en">Scales with operational complexity</span><span data-lang="ru">Масштабируется вместе со сложностью процессов</span></li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-[#0D4F4F] px-6 py-20 text-white lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <div class="max-w-3xl section-reveal"><p class="text-sm font-bold uppercase tracking-[0.22em] text-[#FFB29F]"><span data-lang="en">Outcomes</span><span data-lang="ru">Результат</span></p><h2 class="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl"><span data-lang="en">What changes when data work stops being manual.</span><span data-lang="ru">Что меняется, когда работа с данными перестаёт быть ручной.</span></h2></div>
+        <div class="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div class="section-reveal rounded-[2rem] border border-white/10 bg-white/5 p-7"><div class="text-3xl font-extrabold text-white">−80%</div><p class="mt-3 text-white/75"><span data-lang="en">Manual reporting effort</span><span data-lang="ru">Ручная работа в отчётности</span></p></div>
+          <div class="section-reveal rounded-[2rem] border border-white/10 bg-white/5 p-7"><div class="text-3xl font-extrabold text-white">+10×</div><p class="mt-3 text-white/75"><span data-lang="en">Workflow speed</span><span data-lang="ru">Скорость выполнения процесса</span></p></div>
+          <div class="section-reveal rounded-[2rem] border border-white/10 bg-white/5 p-7"><div class="text-3xl font-extrabold text-white">−65%</div><p class="mt-3 text-white/75"><span data-lang="en">Reconciliation errors</span><span data-lang="ru">Ошибки сверки</span></p></div>
+          <div class="section-reveal rounded-[2rem] border border-white/10 bg-white/5 p-7"><div class="text-3xl font-extrabold text-white">24/7</div><p class="mt-3 text-white/75"><span data-lang="en">Visibility into anomalies</span><span data-lang="ru">Видимость аномалий</span></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero-grid px-6 py-20 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <div class="max-w-3xl section-reveal"><p class="text-sm font-bold uppercase tracking-[0.22em] text-[#FF6B4A]"><span data-lang="en">How we work</span><span data-lang="ru">Как мы работаем</span></p><h2 class="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl"><span data-lang="en">A clear path from workflow audit to scaled automation.</span><span data-lang="ru">Понятный путь от аудита процессов до масштабируемой автоматизации.</span></h2></div>
+        <div class="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div class="section-reveal rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm"><div class="text-sm font-bold uppercase tracking-[0.2em] text-[#FF6B4A]">01</div><h3 class="mt-4 text-xl font-semibold text-slate-900"><span data-lang="en">Audit current workflows</span><span data-lang="ru">Аудит текущих процессов</span></h3><p class="mt-3 text-slate-600"><span data-lang="en">We map where data enters, breaks, delays, and creates extra manual effort.</span><span data-lang="ru">Мы определяем, где данные появляются, ломаются, задерживаются и создают лишнюю ручную работу.</span></p></div>
+          <div class="section-reveal rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm"><div class="text-sm font-bold uppercase tracking-[0.2em] text-[#FF6B4A]">02</div><h3 class="mt-4 text-xl font-semibold text-slate-900"><span data-lang="en">Prioritize highest-impact opportunities</span><span data-lang="ru">Приоритизируем точки максимального эффекта</span></h3><p class="mt-3 text-slate-600"><span data-lang="en">We focus first on the automations that save the most time or reduce the most risk.</span><span data-lang="ru">Сначала мы берём те автоматизации, которые экономят больше всего времени или снижают наибольшие риски.</span></p></div>
+          <div class="section-reveal rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm"><div class="text-sm font-bold uppercase tracking-[0.2em] text-[#FF6B4A]">03</div><h3 class="mt-4 text-xl font-semibold text-slate-900"><span data-lang="en">Deploy AI-enabled workflows</span><span data-lang="ru">Внедряем автоматизированные процессы</span></h3><p class="mt-3 text-slate-600"><span data-lang="en">We implement the automation layer with the right controls, outputs, and fallback logic.</span><span data-lang="ru">Мы внедряем слой автоматизации с нужными ограничениями, результатами и резервной логикой на случай ошибок.</span></p></div>
+          <div class="section-reveal rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm"><div class="text-sm font-bold uppercase tracking-[0.2em] text-[#FF6B4A]">04</div><h3 class="mt-4 text-xl font-semibold text-slate-900"><span data-lang="en">Monitor, refine, scale</span><span data-lang="ru">Мониторим, улучшаем, масштабируем</span></h3><p class="mt-3 text-slate-600"><span data-lang="en">Once it works, we improve quality, extend coverage, and help the system scale with the business.</span><span data-lang="ru">Когда система заработала, мы повышаем качество, расширяем покрытие и помогаем масштабировать её вместе с бизнесом.</span></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cases" class="hero-grid bg-white px-6 py-20 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <div class="max-w-3xl section-reveal"><p class="text-sm font-bold uppercase tracking-[0.22em] text-[#FF6B4A]"><span data-lang="en">Case studies</span><span data-lang="ru">Кейсы</span></p><h2 class="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl"><span data-lang="en">Practical wins across operations, finance, and reporting.</span><span data-lang="ru">Практические результаты в операционке, финансах и отчётности.</span></h2></div>
+        <div class="mt-12 grid gap-6 lg:grid-cols-3">
+          <article class="section-reveal card-hover rounded-[2rem] border border-slate-200 bg-slate-50 p-8"><div class="text-sm font-bold uppercase tracking-[0.18em] text-[#0D4F4F]"><span data-lang="en">Operations team</span><span data-lang="ru">Операционная команда</span></div><h3 class="mt-4 text-2xl font-semibold text-slate-900"><span data-lang="en">Сокращение времени подготовки отчетности с 4,5 часов до 15 минут</span><span data-lang="ru">Еженедельная отчётность сократилась с 12 часов до 90 минут</span></h3><p class="mt-4 leading-7 text-slate-600"><span data-lang="en">A multi-source ops workflow was automated across CRM, spreadsheets, and fulfillment exports, removing repetitive cleanup and manual reconciliation.</span><span data-lang="ru">Операционный процесс с несколькими источниками данных был автоматизирован между CRM, таблицами и внутренними выгрузками, что убрало повторяющуюся очистку и ручную сверку.</span></p><div class="mt-6 rounded-2xl bg-white p-4 text-sm font-semibold text-[#0D4F4F]"><span data-lang="en">Результат: автоматическое формирование отчетов за секунды</span><span data-lang="ru">Результат: цикл отчётности стал быстрее на 87%</span></div></article>
+          <article class="section-reveal card-hover rounded-[2rem] border border-slate-200 bg-slate-50 p-8"><div class="text-sm font-bold uppercase tracking-[0.18em] text-[#0D4F4F]"><span data-lang="en">Finance workflow</span><span data-lang="ru">Финансовый процесс</span></div><h3 class="mt-4 text-2xl font-semibold text-slate-900"><span data-lang="en">Reconciliation errors cut by 65%</span><span data-lang="ru">Ошибки сверки сократились на 65%</span></h3><p class="mt-4 leading-7 text-slate-600"><span data-lang="en">AI-based normalization and anomaly detection reduced mismatches between payment exports, accounting data, and operational records.</span><span data-lang="ru">Автоматическая нормализация и поиск аномалий снизили расхождения между платёжными выгрузками, бухгалтерскими данными и операционными записями.</span></p><div class="mt-6 rounded-2xl bg-white p-4 text-sm font-semibold text-[#0D4F4F]"><span data-lang="en">Outcome: cleaner month-end close</span><span data-lang="ru">Результат: более чистое закрытие месяца</span></div></article>
+          <article class="section-reveal card-hover rounded-[2rem] border border-slate-200 bg-slate-50 p-8"><div class="text-sm font-bold uppercase tracking-[0.18em] text-[#0D4F4F]"><span data-lang="en">Revenue reporting</span><span data-lang="ru">Выручка и отчётность</span></div><h3 class="mt-4 text-2xl font-semibold text-slate-900"><span data-lang="en">Sales reporting automated across 5 tools</span><span data-lang="ru">Отчётность по продажам автоматизирована между 5 инструментами</span></h3><p class="mt-4 leading-7 text-slate-600"><span data-lang="en">A fragmented reporting stack was unified into one automated view, with structured daily summaries and exception alerts for leadership.</span><span data-lang="ru">Разрозненная система отчётности была объединена в один автоматизированный контур со структурированными ежедневными сводками и уведомлениями об отклонениях для руководства.</span></p><div class="mt-6 rounded-2xl bg-white p-4 text-sm font-semibold text-[#0D4F4F]"><span data-lang="en">Outcome: one source of reporting truth</span><span data-lang="ru">Результат: единый источник правды для отчётности</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="hero-grid px-6 py-20 lg:px-8">
+      <div class="mx-auto max-w-4xl">
+        <div class="section-reveal text-center"><p class="text-sm font-bold uppercase tracking-[0.22em] text-[#FF6B4A]">FAQ</p><h2 class="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl"><span data-lang="en">Questions B2B teams usually ask first.</span><span data-lang="ru">Вопросы, которые деловые клиенты обычно задают в первую очередь.</span></h2></div>
+        <div class="mt-12 space-y-4">
+          <div class="faq-item section-reveal rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm"><button class="faq-toggle flex w-full items-start justify-between gap-4 text-left"><span class="text-lg font-semibold text-slate-900"><span data-lang="en">What kinds of data sources do you support?</span><span data-lang="ru">Какие источники данных вы поддерживаете?</span></span><span class="faq-icon text-2xl leading-none text-[#0D4F4F]">+</span></button><div class="faq-content pt-4 text-slate-600"><span data-lang="en">We typically work with spreadsheets, CSV exports, CRMs, finance tools, forms, internal databases, BI tools, and operational systems. The exact stack depends on your workflow.</span><span data-lang="ru">Обычно мы работаем с таблицами, выгрузками, CRM, финансовыми инструментами, формами, внутренними базами, системами аналитики и операционными платформами. Конкретный набор источников зависит от вашего процесса.</span></div></div>
+          <div class="faq-item section-reveal rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm"><button class="faq-toggle flex w-full items-start justify-between gap-4 text-left"><span class="text-lg font-semibold text-slate-900"><span data-lang="en">Can this work with our existing dashboards?</span><span data-lang="ru">Можно ли работать с нашими текущими дашбордами?</span></span><span class="faq-icon text-2xl leading-none text-[#0D4F4F]">+</span></button><div class="faq-content pt-4 text-slate-600"><span data-lang="en">Yes. In many cases we improve the data layer behind your existing dashboards instead of replacing what already works.</span><span data-lang="ru">Да. Во многих случаях мы улучшаем слой данных за вашими текущими дашбордами, а не заменяем то, что уже работает.</span></div></div>
+          <div class="faq-item section-reveal rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm"><button class="faq-toggle flex w-full items-start justify-between gap-4 text-left"><span class="text-lg font-semibold text-slate-900"><span data-lang="en">Do you build custom automations?</span><span data-lang="ru">Вы делаете кастомные автоматизации?</span></span><span class="faq-icon text-2xl leading-none text-[#0D4F4F]">+</span></button><div class="faq-content pt-4 text-slate-600"><span data-lang="en">Yes. Most of our work is tailored to the client’s current workflow, constraints, data quality, and business priorities.</span><span data-lang="ru">Да. Большая часть нашей работы настраивается под текущие процессы клиента, ограничения, качество данных и бизнес-приоритеты.</span></div></div>
+          <div class="faq-item section-reveal rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm"><button class="faq-toggle flex w-full items-start justify-between gap-4 text-left"><span class="text-lg font-semibold text-slate-900"><span data-lang="en">How long does implementation take?</span><span data-lang="ru">Сколько времени занимает внедрение?</span></span><span class="faq-icon text-2xl leading-none text-[#0D4F4F]">+</span></button><div class="faq-content pt-4 text-slate-600"><span data-lang="en">Smaller workflow automations can be delivered quickly. Broader multi-source systems take longer. We usually start with the highest-impact use case first.</span><span data-lang="ru">Небольшие автоматизации можно запустить довольно быстро. Более широкие системы с несколькими источниками данных требуют больше времени. Обычно мы начинаем с задачи с наибольшим эффектом.</span></div></div>
+          <div class="faq-item section-reveal rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm"><button class="faq-toggle flex w-full items-start justify-between gap-4 text-left"><span class="text-lg font-semibold text-slate-900"><span data-lang="en">Is this suitable for non-technical teams?</span><span data-lang="ru">Подходит ли это для нетехнических команд?</span></span><span class="faq-icon text-2xl leading-none text-[#0D4F4F]">+</span></button><div class="faq-content pt-4 text-slate-600"><span data-lang="en">Absolutely. A strong implementation should reduce technical friction, not increase it. Outputs should feel simple and operationally useful.</span><span data-lang="ru">Да. Хорошее внедрение должно снижать техническое трение, а не повышать его. Результат должен быть простым и полезным для операционной работы.</span></div></div>
+          <div class="faq-item section-reveal rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm"><button class="faq-toggle flex w-full items-start justify-between gap-4 text-left"><span class="text-lg font-semibold text-slate-900"><span data-lang="en">How do you handle data security?</span><span data-lang="ru">Как вы подходите к безопасности данных?</span></span><span class="faq-icon text-2xl leading-none text-[#0D4F4F]">+</span></button><div class="faq-content pt-4 text-slate-600"><span data-lang="en">We design around your security requirements, access rules, and compliance needs. The right architecture depends on the sensitivity of the data and the systems involved.</span><span data-lang="ru">Мы проектируем решение с учётом ваших требований к безопасности, доступам и внутренним регламентам. Подходящая архитектура зависит от чувствительности данных и задействованных систем.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="hero-grid px-6 pb-20 lg:px-8">
+      <div class="mx-auto max-w-7xl section-reveal">
+        <div class="overflow-hidden rounded-[2.5rem] bg-[#0D4F4F] px-8 py-10 text-white shadow-[0_30px_80px_rgba(13,79,79,0.18)] sm:px-10 lg:grid lg:grid-cols-[1fr_0.9fr] lg:gap-12 lg:py-14">
+          <div>
+            <p class="text-sm font-bold uppercase tracking-[0.22em] text-[#FFB29F]"><span data-lang="en">Final step</span><span data-lang="ru">Финальный шаг</span></p>
+            <h2 class="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl"><span data-lang="en">No bloated AI transformation project. Just practical automation that saves your team time.</span><span data-lang="ru">Без раздутого проекта по внедрению искусственного интеллекта. Только практическая автоматизация, которая экономит время вашей команды.</span></h2>
+            <p class="mt-5 max-w-2xl text-lg leading-8 text-white/75"><span data-lang="en">If your business is spending too much time on cleanup, reconciliation, and repetitive reporting, we can help you identify the highest-impact workflow to automate first.</span><span data-lang="ru">Если ваш бизнес тратит слишком много времени на очистку данных, сверку и повторяющуюся отчётность, мы поможем определить процесс с наибольшим эффектом для первой автоматизации.</span></p>
+          </div>
+          <form class="mt-10 rounded-[2rem] bg-white p-6 text-slate-900 lg:mt-0">
+            <div class="grid gap-4">
+              <div><label class="mb-2 block text-sm font-semibold text-slate-700"><span data-lang="en">Name</span><span data-lang="ru">Имя</span></label><input type="text" class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-[#0D4F4F]" placeholder="Alex Morgan" /></div>
+              <div><label class="mb-2 block text-sm font-semibold text-slate-700">Email</label><input type="email" class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-[#0D4F4F]" placeholder="alex@company.com" /></div>
+              <div><label class="mb-2 block text-sm font-semibold text-slate-700"><span data-lang="en">What workflow do you want to automate?</span><span data-lang="ru">Какой процесс вы хотите автоматизировать?</span></label><textarea rows="5" class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-[#0D4F4F]" placeholder="Weekly reporting across CRM, spreadsheets, and finance exports..."></textarea></div>
+              <button type="button" class="btn-primary mt-2 inline-flex items-center justify-center rounded-full bg-[#FF6B4A] px-6 py-4 text-base font-semibold text-white shadow-[0_16px_40px_rgba(255,107,74,0.25)] hover:bg-[#f05e3f]"><span data-lang="en">Book a strategy call</span><span data-lang="ru">Записаться на стратегический звонок</span></button>
+              <p class="text-sm text-slate-500"><span data-lang="en">We usually start with one focused automation opportunity instead of trying to redesign everything at once.</span><span data-lang="ru">Обычно мы начинаем с одной конкретной возможности для автоматизации, а не пытаемся сразу перестроить всё.</span></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 px-6 py-10 lg:px-8">
+    <div class="mx-auto flex max-w-7xl flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+      <div>
+        <div class="text-lg font-extrabold tracking-tight text-[#0D4F4F]">Обработка данных в AI</div>
+        <p class="mt-2 max-w-xl text-sm text-slate-500"><span data-lang="en">Practical AI automation for teams that need cleaner data, faster reporting, and more reliable operations.</span><span data-lang="ru">Практическая автоматизация на основе искусственного интеллекта для команд, которым нужны более чистые данные, более быстрая отчётность и более надёжные процессы.</span></p>
+      </div>
+      <div class="flex flex-wrap gap-5 text-sm font-medium text-slate-600">
+        <a class="transition hover:text-[#0D4F4F]" href="#solution"><span data-lang="en">How it works</span><span data-lang="ru">Как это работает</span></a>
+        <a class="transition hover:text-[#0D4F4F]" href="#services"><span data-lang="en">Services</span><span data-lang="ru">Услуги</span></a>
+        <a class="transition hover:text-[#0D4F4F]" href="#cases"><span data-lang="en">Case studies</span><span data-lang="ru">Кейсы</span></a>
+        <a class="transition hover:text-[#0D4F4F]" href="#contact">frolov_ss@mail.ru | @frolov_ss</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const langButtons = document.querySelectorAll('[data-set-lang]');
+    langButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const lang = button.getAttribute('data-set-lang');
+        document.documentElement.setAttribute('data-current-lang', lang);
+        document.documentElement.setAttribute('lang', lang === 'ru' ? 'ru' : 'en');
+        langButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+    document.querySelectorAll('.section-reveal').forEach(el => observer.observe(el));
+
+    const shell = document.getElementById('header-shell');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 24) {
+        shell.classList.add('glass', 'border-slate-200', 'bg-white/80', 'shadow-[0_10px_40px_rgba(15,23,42,0.08)]');
+      } else {
+        shell.classList.remove('glass', 'border-slate-200', 'bg-white/80', 'shadow-[0_10px_40px_rgba(15,23,42,0.08)]');
+      }
+    });
+
+    document.querySelectorAll('.faq-toggle').forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const item = toggle.closest('.faq-item');
+        item.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>
