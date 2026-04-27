@@ -297,12 +297,12 @@
             <h2 class="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl"><span data-lang="en">No bloated AI transformation project. Just practical automation that saves your team time.</span><span data-lang="ru">Без раздутого проекта по внедрению искусственного интеллекта. Только практическая автоматизация, которая экономит время вашей команды.</span></h2>
             <p class="mt-5 max-w-2xl text-lg leading-8 text-white/75"><span data-lang="en">If your business is spending too much time on cleanup, reconciliation, and repetitive reporting, we can help you identify the highest-impact workflow to automate first.</span><span data-lang="ru">Если ваш бизнес тратит слишком много времени на очистку данных, сверку и повторяющуюся отчётность, мы поможем определить процесс с наибольшим эффектом для первой автоматизации.</span></p>
           </div>
-          <form class="mt-10 rounded-[2rem] bg-white p-6 text-slate-900 lg:mt-0">
+          <form id="telegram-form" class="mt-10 rounded-[2rem] bg-white p-6 text-slate-900 lg:mt-0">
             <div class="grid gap-4">
-              <div><label class="mb-2 block text-sm font-semibold text-slate-700"><span data-lang="en">Name</span><span data-lang="ru">Имя</span></label><input type="text" class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-[#0D4F4F]" placeholder="Alex Morgan" /></div>
-              <div><label class="mb-2 block text-sm font-semibold text-slate-700">Email</label><input type="email" class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-[#0D4F4F]" placeholder="alex@company.com" /></div>
-              <div><label class="mb-2 block text-sm font-semibold text-slate-700"><span data-lang="en">What workflow do you want to automate?</span><span data-lang="ru">Какой процесс вы хотите автоматизировать?</span></label><textarea rows="5" class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-[#0D4F4F]" placeholder="Weekly reporting across CRM, spreadsheets, and finance exports..."></textarea></div>
-              <button type="button" class="btn-primary mt-2 inline-flex items-center justify-center rounded-full bg-[#FF6B4A] px-6 py-4 text-base font-semibold text-white shadow-[0_16px_40px_rgba(255,107,74,0.25)] hover:bg-[#f05e3f]"><span data-lang="en">Book a strategy call</span><span data-lang="ru">Записаться на стратегический звонок</span></button>
+              <div><label class="mb-2 block text-sm font-semibold text-slate-700"><span data-lang="en">Name</span><span data-lang="ru">Имя</span></label><input id="contact-name" type="text" class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-[#0D4F4F]" placeholder="Alex Morgan" /></div>
+              <div><label class="mb-2 block text-sm font-semibold text-slate-700">Email</label><input id="contact-email" type="email" class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-[#0D4F4F]" placeholder="alex@company.com" /></div>
+              <div><label class="mb-2 block text-sm font-semibold text-slate-700"><span data-lang="en">What workflow do you want to automate?</span><span data-lang="ru">Какой процесс вы хотите автоматизировать?</span></label><textarea id="contact-message" rows="5" class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-[#0D4F4F]" placeholder="Weekly reporting across CRM, spreadsheets, and finance exports..."></textarea></div>
+              <button type="submit" class="btn-primary mt-2 inline-flex items-center justify-center rounded-full bg-[#FF6B4A] px-6 py-4 text-base font-semibold text-white shadow-[0_16px_40px_rgba(255,107,74,0.25)] hover:bg-[#f05e3f]"><span data-lang="en">Book a strategy call</span><span data-lang="ru">Записаться на стратегический звонок</span></button>
               <p class="text-sm text-slate-500"><span data-lang="en">We usually start with one focused automation opportunity instead of trying to redesign everything at once.</span><span data-lang="ru">Обычно мы начинаем с одной конкретной возможности для автоматизации, а не пытаемся сразу перестроить всё.</span></p>
             </div>
           </form>
@@ -367,6 +367,27 @@
         item.classList.toggle('open');
       });
     });
+
+    const telegramForm = document.getElementById('telegram-form');
+    if (telegramForm) {
+      telegramForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const name = document.getElementById('contact-name').value.trim();
+        const email = document.getElementById('contact-email').value.trim();
+        const message = document.getElementById('contact-message').value.trim();
+
+        const telegramMessage = [
+          'Здравствуйте! Хочу обсудить автоматизацию работы с данными.',
+          name ? 'Имя: ' + name : '',
+          email ? 'Email: ' + email : '',
+          message ? 'Задача: ' + message : 'Задача: хочу понять, какие процессы можно автоматизировать.'
+        ].filter(Boolean).join('\n');
+
+        window.open('https://t.me/frolov_ss?text=' + encodeURIComponent(telegramMessage), '_blank');
+      });
+    }
+
   </script>
 </body>
 </html>
